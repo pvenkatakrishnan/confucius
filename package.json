@@ -1,0 +1,13 @@
+{
+  "name": "confucius",
+  "version": "0.1.0",
+  "description": "confucius integration for Slack",
+  "author": "Poornima Venkatakrishnan",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "slack-client": "^1.4.1"
+  }
+}
