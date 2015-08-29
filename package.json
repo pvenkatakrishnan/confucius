@@ -8,6 +8,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "express": "^4.13.3",
     "slack-client": "^1.4.1"
   }
 }

@@ -2,6 +2,7 @@ var autoReconnect = true;
 var autoMark = true;
 var Slack = require('slack-client');
 var slack = new Slack('xoxb-9882501029-iLuuVgHNPjZ4fJKdxLfROFaP', autoReconnect, autoMark);
+var app = require('express')();
 var sayings = require('./sayings');
 slack.on('message', function(message) {
     var channel, channelError, channelName, errors, response, text, textError, ts, type, typeError, user, userName;
@@ -38,3 +39,4 @@ slack.on('error', function(error) {
 });
 
 slack.login();
+app.listen(process.env.PORT);
