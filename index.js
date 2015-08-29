@@ -20,7 +20,7 @@ slack.on('message', function(message) {
                     throw new Error('break');
                 }
             });
-        } catch(e) {}
+        } catch(e) { console.info('caught error')};
 
     } else {
         typeError = type !== 'message' ? "unexpected type " + type + "." : null;
