@@ -5,15 +5,12 @@ var slack = new Slack('xoxb-9882501029-iLuuVgHNPjZ4fJKdxLfROFaP', autoReconnect,
 var app = require('express')();
 var sayings = require('./sayings');
 slack.on('message', function(message) {
+
     var channel, channelError, channelName, errors, response, text, textError, ts, type, typeError, user, userName;
     channel = slack.getChannelGroupOrDMByID(message.channel);
-    user = slack.getUserByID(message.user);
-    response = '';
     type = message.type, ts = message.ts, text = message.text;
-    channelName = (channel != null ? channel.is_channel : void 0) ? '#' : '';
-    channelName = channelName + (channel ? channel.name : 'UNKNOWN_CHANNEL');
-    userName = (user != null ? user.name : void 0) != null ? "@" + user.name : "UNKNOWN_USER";
     if (type === 'message' && (text != null) && (channel != null)) {
+        console.info('text', text);
         try {
             Object.keys(sayings).forEach(function(key) {
                 if (text.indexOf(key) > -1) {
@@ -21,7 +18,7 @@ slack.on('message', function(message) {
                     throw new Error('break');
                 }
             });
-        } catch(e) { console.info('caught error')};
+        } catch(e) { }
 
     } else {
         typeError = type !== 'message' ? "unexpected type " + type + "." : null;
@@ -39,4 +36,6 @@ slack.on('error', function(error) {
 });
 
 slack.login();
-app.listen(process.env.PORT);
+app.listen(process.env.PORT, function() {
+    console.info("listening on ", process.env.PORT);
+});
