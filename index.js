@@ -36,6 +36,7 @@ slack.on('error', function(error) {
 });
 
 slack.login();
-app.listen(process.env.PORT, function() {
-    console.info("listening on ", process.env.PORT);
+var port = process.env.PORT || 8080;
+app.listen(port, function() {
+    console.info("listening on ", port);
 });
