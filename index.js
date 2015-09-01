@@ -22,7 +22,7 @@ slack.on('message', function(message) {
                 channel.send([sayings.default]);
             } else {
                 //just to keep confucius active do some random activity
-                if (Math.random() > 0.5) {
+                if (Math.random() > 0.7) {
                     var keys = Object.keys(sayings);
                     var item = keys[Math.floor(Math.random() * keys.length)];
                     channel.send(sayings[item]);
