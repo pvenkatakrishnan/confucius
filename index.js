@@ -10,6 +10,7 @@ slack.on('message', function(message) {
     channel = slack.getChannelGroupOrDMByID(message.channel);
     type = message.type, ts = message.ts, text = message.text;
     if (type === 'message' && (text != null) && (channel != null)) {
+        text = text.toLowerCase();
         console.info('text', text);
         try {
             Object.keys(sayings).forEach(function(key) {
