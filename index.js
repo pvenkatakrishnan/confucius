@@ -18,7 +18,17 @@ slack.on('message', function(message) {
                     throw new Error('break');
                 }
             });
-        } catch(e) { }
+            if(text.indexOf('@') > -1) {
+                channel.send([sayings.default]);
+            } else {
+                //just to keep confucius active do some random activity
+                if (Math.random() > 0.5) {
+                    var keys = Object.keys(sayings);
+                    var item = keys[Math.floor(Math.random() * keys.length)];
+                    channel.send(sayings[item]);
+                }
+            }
+        } catch(e) {}
 
     } else {
         typeError = type !== 'message' ? "unexpected type " + type + "." : null;
